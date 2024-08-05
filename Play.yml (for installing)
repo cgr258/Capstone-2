@@ -1,0 +1,19 @@
+---
+- name: installing jenkins,docker,java on Gova
+  become: true
+  hosts: localhost
+  tasks:
+  - name: run script1
+    script: script1.sh
+- name: installing k8s,docker,java on M3
+  become: true
+  hosts: master
+  tasks:
+  - name: run script2
+    script: script2.sh
+- name: installing k8s,docker on M2,M4
+  become: true
+  hosts: slaves
+  tasks:
+  - name: run script3
+    script: script3.sh

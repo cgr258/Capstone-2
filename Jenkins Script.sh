@@ -28,5 +28,17 @@ pipeline {
                 sh 'sudo docker push cgr258/project2'
             }
         }
+        stage('kubernetes') {
+            agent {
+                label 'K8-node'
+            }
+            steps {
+                sh 'kubectl delete deploy nginx-deployment'
+                sh 'kubectl apply -f deployment.yml'
+                sh 'kubectl delete service my-service'
+                sh 'kubectl apply -f service.yml'
+            }
+        }
+        
     }
 }
